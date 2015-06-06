@@ -98,5 +98,5 @@ $(document).ready(function () {
 
 // Reload the page every 30 seconds.
 window.setInterval(function () {
-    location.reload();
+    window.location = "status.html";
 }, 30000)
