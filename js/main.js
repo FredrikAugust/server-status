@@ -71,21 +71,25 @@ $(document).ready(function () {
         var sdc2 = re_sdc2.exec(data);
         var total = re_total.exec(data);
 
+        // sda1
         $("#sda_total").text(sda1[1]);
         $("#sda_used").text(sda1[2]);
         $("#sda_free").text(sda1[3]);
 
-        $("#sdb_total").text(sda1[1]);
-        $("#sdb_used").text(sda1[2]);
-        $("#sdb_free").text(sda1[3]);
+        // sdb2
+        $("#sdb_total").text(sdb2[1]);
+        $("#sdb_used").text(sdb2[2]);
+        $("#sdb_free").text(sdb2[3]);
 
-        $("#sdc_total").text(sda1[1]);
-        $("#sdc_used").text(sda1[2]);
-        $("#sdc_free").text(sda1[3]);
+        // sdc2
+        $("#sdc_total").text(sdc2[1]);
+        $("#sdc_used").text(sdc2[2]);
+        $("#sdc_free").text(sdc2[3]);
 
-        $("#t_total").text(sda1[1]);
-        $("#t_used").text(sda1[2]);
-        $("#t_free").text(sda1[3]);
+        // total
+        $("#t_total").text(total[1]);
+        $("#t_used").text(total[2]);
+        $("#t_free").text(total[3]);
 
         // title
         document.title = temp[1] + "°C | CPU: " + cpu_load[1];

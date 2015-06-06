@@ -16,6 +16,6 @@ Swap:           0B         0B         0B
  
 Drive stats:  TOTAL | USED | FREE
 /dev/sda1        95G  6,5G   84G   8% /
-/dev/sdb2       1,9T  160G  1,7T   9% /mnt/hdd1
-/dev/sdc2       1,9T  543G  1,3T  30% /mnt/hdd0
+/dev/sdb2       3,9T  160G  1,7T   9% /mnt/hdd1
+/dev/sdc2       100T  543G  1,3T  30% /mnt/hdd0
 total           3,8T  710G  3,1T  19% -
