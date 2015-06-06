@@ -30,7 +30,7 @@ def main():
             
     with open("/var/www/html/temp.txt", "a+") as file:
         file.write(re.search("(\d\d\:\d\d\:\d\d)", os.popen("uptime").read(), re.VERBOSE).group(0) + "/n")
-        file.write(re.search("CPU\:\s([\d\.]+)\SC", os.popen("getcputemp").read(), re.VERBOSE).group(1) + "C\n")
+        file.write(re.search("[\w]+\:\s([\d\.]+)", os.popen("getcputemp").read(), re.VERBOSE).group(1) + "C\n")
         
     with open("/var/www/html/load.txt", "a+") as file:
         file.write(re.search("(\d\d\:\d\d\:\d\d)", os.popen("uptime").read(), re.VERBOSE).group(0) + "/n")
