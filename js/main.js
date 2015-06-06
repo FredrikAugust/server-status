@@ -96,6 +96,7 @@ $(document).ready(function () {
     });
 });
 
+// Reload the page every 30 seconds.
 window.setInterval(function () {
-    location.reload()
+    location.reload();
 }, 30000)
