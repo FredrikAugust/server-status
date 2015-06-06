@@ -44,32 +44,32 @@
             tempdata.addColumn('string', 'Time');
             tempdata.addColumn('number', 'Temp (Celsius)');
             tempdata.addRows([
-              [times.shift(), Number(temps.shift())],
-              [times.shift(), Number(temps.shift())],
-              [times.shift(), Number(temps.shift())],
-              [times.shift(), Number(temps.shift())],
-              [times.shift(), Number(temps.shift())],
-              [times.shift(), Number(temps.shift())],
-              [times.shift(), Number(temps.shift())],
-              [times.shift(), Number(temps.shift())],
-              [times.shift(), Number(temps.shift())],
-              [times.shift(), Number(temps.shift())],
+              [times.pop(), Number(temps.pop())],
+              [times.pop(), Number(temps.pop())],
+              [times.pop(), Number(temps.pop())],
+              [times.pop(), Number(temps.pop())],
+              [times.pop(), Number(temps.pop())],
+              [times.pop(), Number(temps.pop())],
+              [times.pop(), Number(temps.pop())],
+              [times.pop(), Number(temps.pop())],
+              [times.pop(), Number(temps.pop())],
+              [times.pop(), Number(temps.pop())],
             ]);
 
             var loaddata = new google.visualization.DataTable();
             loaddata.addColumn('string', 'Time');
             loaddata.addColumn('number', 'Load (Percentage)');
             loaddata.addRows([
-              [loadtimes.shift(), Number(load.shift())],
-              [loadtimes.shift(), Number(load.shift())],
-              [loadtimes.shift(), Number(load.shift())],
-              [loadtimes.shift(), Number(load.shift())],
-              [loadtimes.shift(), Number(load.shift())],
-              [loadtimes.shift(), Number(load.shift())],
-              [loadtimes.shift(), Number(load.shift())],
-              [loadtimes.shift(), Number(load.shift())],
-              [loadtimes.shift(), Number(load.shift())],
-              [loadtimes.shift(), Number(load.shift())]
+              [loadtimes.pop(), Number(load.pop())],
+              [loadtimes.pop(), Number(load.pop())],
+              [loadtimes.pop(), Number(load.pop())],
+              [loadtimes.pop(), Number(load.pop())],
+              [loadtimes.pop(), Number(load.pop())],
+              [loadtimes.pop(), Number(load.pop())],
+              [loadtimes.pop(), Number(load.pop())],
+              [loadtimes.pop(), Number(load.pop())],
+              [loadtimes.pop(), Number(load.pop())],
+              [loadtimes.pop(), Number(load.pop())]
             ]);
 
             // Set chart options
