@@ -38,4 +38,4 @@ def main():
     
 while True:
     main()
-    time.sleep(30)
+    time.sleep(5)
