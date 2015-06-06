@@ -12,16 +12,16 @@
 <body>
     <div class="container">
         <h1>Server Status</h1>
-        <h4><span id="uptime"></span></h4>
+        <h4>Information Retrieved: <span id="uptime"></span></h4>
         <hr />
 
-        <h3>Temp: <span id="temp"></span></h3>
+        <h3>Temp: <span id="temp"></span>°C</h3>
 
         <hr />
 
         <h3>CPU Load:</h3>
         <div class="progress">
-            <div class="progress-bar progress-bar-info active progress-bar-striped" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"><!--change dynamically-->
+            <div class="progress-bar progress-bar-info active progress-bar-striped" id="cpu_progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"><!--change dynamically-->
                 <span id="cpu_load"></span>
             </div>
         </div>
@@ -116,7 +116,7 @@
                 <tr>
                     <th>Total</th>
                     <td><span id="t_total"></span></td>
-                    <td><span id="used"></span></td>
+                    <td><span id="t_used"></span></td>
                     <td><span id="t_free"></span></td>
                     <td>-</td>
                 </tr>
@@ -126,5 +126,6 @@
 
     <!--This is required for jQuery-->
     <script src="./js/jquery-2.1.4.min.js" type="text/javascript"></script>
+    <script src="./js/main.js" type="text/javascript"></script>
 </body>
 </html>
