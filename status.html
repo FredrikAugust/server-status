@@ -8,6 +8,112 @@
     <link href="./css/bootstrap-theme.min.css" rel="stylesheet" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Load the AJAX API-->
+    <script src="./js/jquery-2.1.4.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+        var times = [];
+        var temps = [];
+
+        $.get("temp.txt", function(data) {
+            times = data.match(/(\d\d\:\d\d\:\d\d)/g);
+            temps = String(data.match(/([\d\.]+)C/g)).match(/[\d\.]+/g);
+        });
+
+        var loadtimes = [];
+        var load = [];
+
+        $.get("load.txt", function (data) {
+            loadtimes = data.match(/(\d\d\:\d\d\:\d\d)/g);
+            load = String(data.match(/[\d\.]+%/g)).match(/[\d\.]+/g);
+        });
+
+        // Load the Visualization API and the piechart package.
+        google.load('visualization', '1.0', { 'packages': ['corechart'] });
+
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.setOnLoadCallback(drawChart);
+
+        // Callback that creates and populates a data table,
+        // instantiates the pie chart, passes in the data and
+        // draws it.
+        function drawChart() {
+            // Create the data table.
+            var tempdata = new google.visualization.DataTable();
+            tempdata.addColumn('string', 'Time');
+            tempdata.addColumn('number', 'Temp (Celsius)');
+            tempdata.addRows([
+              [times.shift(), Number(temps.shift())],
+              [times.shift(), Number(temps.shift())],
+              [times.shift(), Number(temps.shift())],
+              [times.shift(), Number(temps.shift())],
+              [times.shift(), Number(temps.shift())],
+              [times.shift(), Number(temps.shift())],
+              [times.shift(), Number(temps.shift())],
+              [times.shift(), Number(temps.shift())],
+              [times.shift(), Number(temps.shift())],
+              [times.shift(), Number(temps.shift())],
+            ]);
+
+            var loaddata = new google.visualization.DataTable();
+            loaddata.addColumn('string', 'Time');
+            loaddata.addColumn('number', 'Load (Percentage)');
+            loaddata.addRows([
+              [loadtimes.shift(), Number(load.shift())],
+              [loadtimes.shift(), Number(load.shift())],
+              [loadtimes.shift(), Number(load.shift())],
+              [loadtimes.shift(), Number(load.shift())],
+              [loadtimes.shift(), Number(load.shift())],
+              [loadtimes.shift(), Number(load.shift())],
+              [loadtimes.shift(), Number(load.shift())],
+              [loadtimes.shift(), Number(load.shift())],
+              [loadtimes.shift(), Number(load.shift())],
+              [loadtimes.shift(), Number(load.shift())]
+            ]);
+
+            // Set chart options
+            var tempoptions = {
+                'title': 'Temperature',
+                'width': $("#tempchartdiv").width(),
+                'height': $("#tempchartdiv").width() / (16 / 9),
+                curveType: 'function',
+                legend: { position: 'none' },
+                hAxis: {
+                    title: 'Time',
+                    logScale: true
+                },
+                vAxis: {
+                    title: 'Temperature (Celsius)',
+                    logScale: false
+                }
+            };
+
+            var loadoptions = {
+                'title': 'CPU Load',
+                'width': $("#loadchartdiv").width(),
+                'height': $("#loadchartdiv").width() / (16 / 9),
+                curveType: 'function',
+                legend: { position: 'none' },
+                hAxis: {
+                    title: 'Time',
+                    logScale: true
+                },
+                vAxis: {
+                    title: 'Load (Percentage)',
+                    logScale: false
+                }
+            }
+
+            // Instantiate and draw our chart, passing in some options.
+            var tempchart = new google.visualization.LineChart(document.getElementById('tempchartdiv'));
+            tempchart.draw(tempdata, tempoptions);
+
+            // Instantiate and draw our chart, passing in some options.
+            var loadchart = new google.visualization.LineChart(document.getElementById('loadchartdiv'));
+            loadchart.draw(loaddata, loadoptions);
+        }
+    </script>
 </head>
 <body>
     <div class="container">
@@ -24,6 +130,13 @@
             <div class="progress-bar progress-bar-info active progress-bar-striped" id="cpu_progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"><!--change dynamically-->
                 <span id="cpu_load"></span>
             </div>
+        </div>
+
+        <hr />
+
+        <div class="row">
+            <div id="tempchartdiv" class="col-md-6 col-xs-12"></div>
+            <div id="loadchartdiv" class="col-md-6 col-xs-12"></div>
         </div>
 
         <hr />
@@ -125,7 +238,6 @@
     </div>
 
     <!--This is required for jQuery-->
-    <script src="./js/jquery-2.1.4.min.js" type="text/javascript"></script>
     <script src="./js/main.js" type="text/javascript"></script>
 </body>
 </html>
