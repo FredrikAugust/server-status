@@ -95,3 +95,7 @@ $(document).ready(function () {
         document.title = temp[1] + "°C | CPU: " + cpu_load[1];
     });
 });
+
+window.setInterval(function () {
+    location.reload()
+}, 30000)
