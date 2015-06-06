@@ -59,6 +59,9 @@ $(document).ready(function () {
         $("#bc_used").text(buffer_cache[1]);
         $("#bc_free").text(buffer_cache[2]);
 
+        $("#mem_prog").text(buffer_cache[1])
+        $("#mem_progress").attr("style", "width:" + String(Number((buffer_cache[1].replace("M", "") / 15706) * 100) + "%"));
+
         // swap
         var swap = re_swap.exec(data);
         $("#swap_total").text(swap[1]);
