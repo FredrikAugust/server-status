@@ -50,7 +50,7 @@ def get_temp():
 def write(time=""):
     for type in [["temp", get_temp], ["load", get_load]]:
         with open(type[0] + time + ".txt") as file:
-            file.write(get_time + type[1]()
+            file.write(get_time + type[1]())
 
 prev_time = get_time()
 prev_day = datetime.datetime.today().day
