@@ -27,9 +27,9 @@ def main():
     data = data.replace(']', '')
     data = data.replace(',', '')
 
-    # os.popen("echo " + data + " > /var/www/html/status")
-    # for data in dataList:
-    #     print data
+    #os.popen("echo " + data + " > /var/www/html/status")
+    #for data in dataList:
+    #    print data
     
     with open("/var/www/html/status.txt", "w") as file:
         for data in dataList:
