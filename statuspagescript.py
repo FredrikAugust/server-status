@@ -49,19 +49,19 @@ def get_temp():
     
 def write(time=""):
     for type in [["temp", get_temp], ["load", get_load]]:
-        with open(type[0] + time + ".txt") as file:
-            file.write(get_time + type[1]())
+        with open(type[0] + time + ".txt", "a+") as file:
+            file.write(get_time() + type[1]())
 
 prev_time = get_time()
 prev_day = datetime.datetime.today().day
 
 while True:
     # minute change
-    if get_time[3:5] != prev_time[3:5]:
+    if get_time()[3:5] != prev_time[3:5]:
         write("min")
 
     # hour change
-	if get_time[0:2] != prev_time[0:2]:
+	if get_time()[0:2] != prev_time[0:2]:
 	    write("hr")
 
     # day change
