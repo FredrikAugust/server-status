@@ -39,7 +39,7 @@ def main():
 
 
 def get_time():
-    return re.search("\d\d\:\d\d\:\d\d", os.popen("uptime").read()) + "\n"
+    return re.search("\d\d\:\d\d\:\d\d", os.popen("uptime").read(), re.VERBOSE).group(0) + "\n"
 
 def get_load():
     return re.search("CPU\sload\:\s([\d\.]+\%)", os.popen("cpuload").read(), re.VERBOSE).group(1) + "\n"
