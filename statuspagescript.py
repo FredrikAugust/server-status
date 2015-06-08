@@ -48,7 +48,7 @@ def get_temp():
     return re.search("[\w]+\:\s([\d\.]+)", os.popen("getcputemp").read(), re.VERBOSE).group(1) + "C\n"
     
 def write(time=""):
-    for type in [["temp", get_temp], ["load", get_load]:
+    for type in [["temp", get_temp], ["load", get_load]]:
         with open(type[0] + time + ".txt") as file:
             file.write(get_time + type[1]()
 
