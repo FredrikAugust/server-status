@@ -26,3 +26,4 @@ function getLoadURL() {
         return("load" + getQueryVariable("temp") + ".txt");
     }
 }
+

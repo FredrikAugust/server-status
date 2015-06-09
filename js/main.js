@@ -97,6 +97,52 @@ $(document).ready(function () {
         // title
         document.title = temp[1] + "°C | CPU: " + cpu_load[1];
     });
+    
+    switch (getQueryVariable('load')) {
+        case false:
+            $('#temp-realtime').attr('href', 'status.html');
+            $('#temp-min').attr('href', 'status.html?temp=min');
+            $('#temp-hr').attr('href', 'status.html?temp=hr');
+            $('#temp-day').attr('href', 'status.html?temp=day');
+        
+            $('#load-realtime').attr('class', 'btn btn-success');
+        
+            break;
+        
+        default:
+            $('#temp-realtime').attr('href', 'status.html?load=' + getQueryVariable('load'));
+            $('#temp-min').attr('href', 'status.html?temp=min&load=' + getQueryVariable('load'));
+            $('#temp-hr').attr('href', 'status.html?temp=hr&load=' + getQueryVariable('load'));
+            $('#temp-day').attr('href', 'status.html?temp=day&load=' + getQueryVariable('load'));
+        
+            $('#load-' + getQueryVariable('load')).attr('class', 'btn btn-success');
+        
+            break;
+    }
+    
+    switch (getQueryVariable('temp')) {
+        case false:
+            $('#load-realtime').attr('href', 'status.html');
+            $('#load-min').attr('href', 'status.html?load=min');
+            $('#load-hr').attr('href', 'status.html?load=hr');
+            $('#load-day').attr('href', 'status.html?load=day');
+            
+            $('#temp-realtime').attr('class', 'btn btn-success');
+            
+            break;
+        
+        default:
+            $('#load-realtime').attr('href', 'status.html?load=' + getQueryVariable('temp'));
+            $('#load-min').attr('href', 'status.html?load=min&load=' + getQueryVariable('temp'));
+            $('#load-hr').attr('href', 'status.html?load=hr&load=' + getQueryVariable('temp'));
+            $('#load-day').attr('href', 'status.html?load=day&load=' + getQueryVariable('temp'));
+            
+            $('#temp-' + getQueryVariable('temp')).attr('class', 'btn btn-success');
+            
+            break;
+    }
+    
+    
 });
 
 // Reload the page every 30 seconds.
