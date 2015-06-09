@@ -31,7 +31,7 @@ def main():
     # for data in dataList:
     #     print data
     
-    with open("/var/www/html/status.txt", "w") as file:
+    with open("/var/www/html/status.txt", "w+") as file:
         for data in dataList:
             file.write(data)
             
