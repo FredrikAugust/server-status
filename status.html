@@ -12,11 +12,12 @@
     <!--Load the AJAX API-->
     <script src="./js/jquery-2.1.4.min.js" type="text/javascript"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript" src="./js/getparams.js"></script>
     <script type="text/javascript">
         var times = [];
         var temps = [];
 
-        $.get("temp.txt", function(data) {
+        $.get(getTempURL(), function(data) {
             times = data.match(/(\d\d\:\d\d\:\d\d)/g);
             temps = String(data.match(/([\d\.]+)C/g)).match(/[\d\.]+/g);
         });
@@ -24,7 +25,7 @@
         var loadtimes = [];
         var load = [];
 
-        $.get("load.txt", function (data) {
+        $.get(getLoadURL(), function (data) {
             loadtimes = data.match(/(\d\d\:\d\d\:\d\d)/g);
             load = String(data.match(/[\d\.]+%/g)).match(/[\d\.]+/g);
         });

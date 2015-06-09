@@ -101,5 +101,5 @@ $(document).ready(function () {
 
 // Reload the page every 30 seconds.
 window.setInterval(function () {
-    window.location = "status.html";
+    window.location = window.location.href;
 }, 30000)
