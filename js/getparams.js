@@ -23,7 +23,7 @@ function getLoadURL() {
     if (getQueryVariable("load") == false) {
         return("load.txt");
     } else {
-        return("load" + getQueryVariable("temp") + ".txt");
+        return("load" + getQueryVariable("load") + ".txt");
     }
 }
 

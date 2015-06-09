@@ -64,7 +64,7 @@ $(document).ready(function () {
         if (buffer_cache[1][buffer_cache[1].length - 1] = "G") {
             $("#mem_progress").attr("style", "width:" + String((Number((buffer_cache[1].replace("G", "") * 1000) / 15706) * 100) + "%"));
         } else {
-            $("#mem_progress").attr("style", "width:" + String(Number((buffer_cache[1].replace("M", "") / 15706) * 100) + "%"));
+            $("#mem_progress").attr("style", "width:" + String(Number(buffer_cache[1].replace("M", "") / 15706) * 100) + "%"));
         }
 
         // swap
