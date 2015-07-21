@@ -3,6 +3,7 @@
 $(document).ready(function () {
     // last pulled
     var re_lastpull = /\d\d\:\d\d\:\d\d/;
+    var re_total_uptime = /up\s([\w\d\,]+)\,\s\s[\d]*\:/;
 
     // temperature
     var re_temp = /CPU\: ([\d\.]+)/;
@@ -15,20 +16,23 @@ $(document).ready(function () {
     var re_net_stat_up = /up\: ([\d]+\.[\d]+ [\w]+)\b/m;
 
     // memory stats
-    var re_mem = /Mem\:[\s]+([\d\,]+\w)[\s]+([\d\,]+\w)[\s]+([\d\,]+\w)[\s]+([\d\,]+\w)[\s]+([\d\,]+\w)[\s]+([\d\,]+\w)/i
-    var re_buffer_cache = /\-\/\+ buffers\/cache\:[\s]+([\d\,]+\w)[\s]+([\d\,]+\w)/i
-    var re_swap = /Swap\:[\s]+([\d\,]+\w)[\s]+([\d\,]+\w)[\s]+([\d\,]+\w)/i
+    var re_mem = /Mem\:[\s]+([\d\,]+\w)[\s]+([\d\,]+\w)[\s]+([\d\,]+\w)[\s]+([\d\,]+\w)[\s]+([\d\,]+\w)[\s]+([\d\,]+\w)/i;
+    var re_buffer_cache = /\-\/\+ buffers\/cache\:[\s]+([\d\,]+\w)[\s]+([\d\,]+\w)/i;
+    var re_swap = /Swap\:[\s]+([\d\,]+\w)[\s]+([\d\,]+\w)[\s]+([\d\,]+\w)/i;
 
     // drive stats
-    var re_sda1 = /\/dev\/sda1[\s]+([\d\,]+\w)[\s]+([\d\,]+\w)[\s]+([\d\,]+\w)[\s]+[\d]+%/i
-    var re_sdb2 = /\/dev\/sdb2[\s]+([\d\,]+\w)[\s]+([\d\,]+\w)[\s]+([\d\,]+\w)[\s]+[\d]+%/i
-    var re_sdc2 = /\/dev\/sdc2[\s]+([\d\,]+\w)[\s]+([\d\,]+\w)[\s]+([\d\,]+\w)[\s]+[\d]+%/i
-    var re_total = /total[\s]+([\d\,]+\w)[\s]+([\d\,]+\w)[\s]+([\d\,]+\w)[\s]+[\d]+%/i
+    var re_sda1 = /\/dev\/sda1[\s]+([\d\,]+\w)[\s]+([\d\,]+\w)[\s]+([\d\,]+\w)[\s]+[\d]+%/i;
+    var re_sdb2 = /\/dev\/sdb2[\s]+([\d\,]+\w)[\s]+([\d\,]+\w)[\s]+([\d\,]+\w)[\s]+[\d]+%/i;
+    var re_sdc2 = /\/dev\/sdc2[\s]+([\d\,]+\w)[\s]+([\d\,]+\w)[\s]+([\d\,]+\w)[\s]+[\d]+%/i;
+    var re_total = /total[\s]+([\d\,]+\w)[\s]+([\d\,]+\w)[\s]+([\d\,]+\w)[\s]+[\d]+%/i;
 
     $.get("status.txt", function (data) {
         // uptime
         var uptime = re_lastpull.exec(data);
         $("#uptime").text(uptime[0]);
+
+        var total_uptime = re_total_uptime.exec(data);
+        $('#total_uptime').text(total_uptime[1]);
 
         // temperature
         var temp = re_temp.exec(data);
@@ -59,7 +63,7 @@ $(document).ready(function () {
         $("#bc_used").text(buffer_cache[1]);
         $("#bc_free").text(buffer_cache[2]);
 
-        $("#mem_prog").text(buffer_cache[1])
+        $("#mem_prog").text(buffer_cache[1]);
 
         if (!(buffer_cache[1].indexOf('G') === -1)) {
             $("#mem_progress").attr("style", "width:" + String(((Number(buffer_cache[1].replace("G", "")) * 1000) / 15706) * 100) + "%");
@@ -100,57 +104,57 @@ $(document).ready(function () {
         $("#t_free").text(total[3]);
 
         // title
-        document.title = temp[1] + "°C | CPU: " + cpu_load[1];
+        document.title = temp[1] + "&deg;C | CPU: " + cpu_load[1];
     });
-    
+
     switch (getQueryVariable('load')) {
         case false:
             $('#temp-realtime').attr('href', 'status.html');
             $('#temp-min').attr('href', 'status.html?temp=min');
             $('#temp-hr').attr('href', 'status.html?temp=hr');
             $('#temp-day').attr('href', 'status.html?temp=day');
-        
+
             $('#load-realtime').attr('class', 'btn btn-success');
-        
+
             break;
-        
+
         default:
             $('#temp-realtime').attr('href', 'status.html?load=' + getQueryVariable('load'));
             $('#temp-min').attr('href', 'status.html?temp=min&load=' + getQueryVariable('load'));
             $('#temp-hr').attr('href', 'status.html?temp=hr&load=' + getQueryVariable('load'));
             $('#temp-day').attr('href', 'status.html?temp=day&load=' + getQueryVariable('load'));
-        
+
             $('#load-' + getQueryVariable('load')).attr('class', 'btn btn-success');
-        
+
             break;
     }
-    
+
     switch (getQueryVariable('temp')) {
         case false:
             $('#load-realtime').attr('href', 'status.html');
             $('#load-min').attr('href', 'status.html?load=min');
             $('#load-hr').attr('href', 'status.html?load=hr');
             $('#load-day').attr('href', 'status.html?load=day');
-            
+
             $('#temp-realtime').attr('class', 'btn btn-success');
-            
+
             break;
-        
+
         default:
             $('#load-realtime').attr('href', 'status.html?load=' + getQueryVariable('temp'));
             $('#load-min').attr('href', 'status.html?load=min&load=' + getQueryVariable('temp'));
             $('#load-hr').attr('href', 'status.html?load=hr&load=' + getQueryVariable('temp'));
             $('#load-day').attr('href', 'status.html?load=day&load=' + getQueryVariable('temp'));
-            
+
             $('#temp-' + getQueryVariable('temp')).attr('class', 'btn btn-success');
-            
+
             break;
     }
-    
-    
+
+
 });
 
 // Reload the page every 30 seconds.
 window.setInterval(function () {
     window.location = window.location.href;
-}, 30000)
+}, 30000);
