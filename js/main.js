@@ -3,7 +3,9 @@
 $(document).ready(function () {
     // last pulled
     var re_lastpull = /\d\d\:\d\d\:\d\d/;
-    var re_total_uptime = /up\s([\w\d\,]+)\,\s\s[\d]*\:/;
+
+    // uptime
+    var re_total_uptime = /up\s([\w\d\,\s]+)\,\s\s[\d]*\:/i;
 
     // temperature
     var re_temp = /CPU\: ([\d\.]+)/;
