@@ -18,7 +18,7 @@
         var temps = [];
 
         $.get(getTempURL(), function(data) {
-            times = data.match(/(\d\d\:\d\d\:\d\d)/g);
+            times = data.match(/(\d\d\:\d\d\:\d\d|\d\d\d\d\-\d\d\-\d\d)/g);
             temps = String(data.match(/([\d\.]+)C/g)).match(/[\d\.]+/g);
         });
 
@@ -122,7 +122,7 @@
         <h4>Information Retrieved: <span id="uptime"></span></h4>
         <hr />
 
-        <h3>Temp: <span id="temp"></span>°C</h3>
+        <h3>Temp: <span id="temp"></span>ï¿½C</h3>
 
         <hr />
 

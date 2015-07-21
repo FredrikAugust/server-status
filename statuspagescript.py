@@ -30,11 +30,11 @@ def main():
     # os.popen("echo " + data + " > /var/www/html/status")
     # for data in dataList:
     #     print data
-    
+
     with open("/var/www/html/status.txt", "w+") as file:
         for data in dataList:
             file.write(data)
-            
+
     write()
 
 
@@ -46,11 +46,14 @@ def get_load():
 
 def get_temp():
     return re.search("[\w]+\:\s([\d\.]+)", os.popen("getcputemp").read(), re.VERBOSE).group(1) + "C\n"
-    
+
 def write(time=""):
     for type in [["temp", get_temp], ["load", get_load]]:
         with open(type[0] + time + ".txt", "a+") as file:
-            file.write(get_time() + type[1]())
+            if time == 'day':
+                file.write(str(datetime.datetime.today()).split(' ')[0] + type[1])
+            else:
+                file.write(get_time() + type[1]())
 
 prev_time = get_time()
 prev_day = datetime.datetime.today().day
