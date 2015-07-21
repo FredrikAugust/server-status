@@ -106,7 +106,7 @@ $(document).ready(function () {
         $("#t_free").text(total[3]);
 
         // title
-        document.title = temp[1] + "&deg;C | CPU: " + cpu_load[1];
+        document.title = temp[1] + "\xB0C | CPU: " + cpu_load[1];
     });
 
     switch (getQueryVariable('load')) {
